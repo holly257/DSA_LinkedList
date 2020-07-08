@@ -213,7 +213,7 @@ function size(list) {
         currNode = currNode.next;
     }
 
-    return count + ' items in list';
+    return count;
 }
 
 function isEmpty(list) {
@@ -288,31 +288,63 @@ function WhatDoesThisProgramDo(lst) {
     }
 }
 
+function reverseList(list) {
+    console.log('reverse list', list);
+    // If the list is empty
+    if (!list.head) {
+        return null;
+    }
+
+    //if only one item in list
+    if (!list.head.next) {
+        return list;
+    }
+
+    let current = list.head;
+    let prev = null;
+    let next = null;
+
+    //for items in list
+    while (current !== null) {
+        //set next value first
+        next = current.next;
+        //then reset the current.next ptr
+        current.next = prev;
+        //then move to next item in list
+        prev = current;
+        current = next;
+    }
+
+    list.head = prev;
+
+    return list;
+}
+
 function main() {
     const SLL = new linkedList();
 
     SLL.insertFirst('1 Apollo');
-    SLL.insertLast('2 Boomer');
     SLL.insertLast('2 Boomer');
     SLL.insertLast('3 Helo');
     SLL.insertLast('4 Husker');
     SLL.insertLast('5 Starbuck');
     SLL.insertLast('6 Tauhida');
 
-    SLL.remove('4 Husker');
+    // SLL.remove('4 Husker');
 
-    SLL.insertBefore('1.5 Athena', '2 Boomer');
-    SLL.insertAfter('3.5 Hotdog', '3 Helo');
-    SLL.insertAt('new 3 - Kat', 7);
+    // SLL.insertBefore('1.5 Athena', '2 Boomer');
+    // SLL.insertAfter('3.5 Hotdog', '3 Helo');
+    // SLL.insertAt('new 3 - Kat', 7);
 
-    SLL.remove('6 Tauhida');
+    // SLL.remove('6 Tauhida');
 
     let listValue = display(SLL);
     let listLength = size(SLL);
     let isTheListEmpty = isEmpty(SLL);
     let previousItemInList = findPrevious(SLL, '3 Helo');
     let lastItemInList = findLast(SLL);
-    //return lastItemInList;
+    //let reversedList = reverseList(SLL);
+    //return reversedList;
     return SLL;
 }
 
