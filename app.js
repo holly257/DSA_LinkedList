@@ -321,8 +321,6 @@ function reverseList(list) {
 
 //antepenultimate means third from the last
 function antepenultimate(list) {
-    console.log('third', list);
-
     // If the list is empty, or only has 1 or 2 items
     if (!list.head || !list.head.next || !list.head.next.next) {
         return null;
@@ -334,12 +332,53 @@ function antepenultimate(list) {
     //while there are items in the list
     while (currNode.next.next.next !== null) {
         //coutn each item in the list
-        
+
         //move to the next item
         currNode = currNode.next;
     }
 
     return currNode;
+}
+
+function findMiddle(list) {
+    //if empty list
+    if (!list.head) {
+        return null;
+    }
+
+    //if only one item in list
+    if (!list.head.next) {
+        return list.head;
+    }
+
+    let listLength = size(list);
+    let currNode = list.head;
+    let middlePosition = 0;
+    let middleNode = null;
+    let currPosition = 1;
+    let nextNode = null;
+    let twoMiddles = null;
+
+    //if the list is odd - return middle node
+    if (listLength % 2 !== 0) {
+        middlePosition = Math.floor(listLength / 2) + 1;
+        while (currNode !== null && currPosition != middlePosition) {
+            currNode = currNode.next;
+            currPosition++;
+        }
+        middleNode = currNode;
+        return middleNode;
+    } else {
+        //if the list is even, return the two middle nodes
+        middlePosition = listLength / 2;
+        while (currNode !== null && currPosition != middlePosition) {
+            currNode = currNode.next;
+            nextNode = currNode.next;
+            currPosition++;
+        }
+        twoMiddles = [currNode, nextNode];
+        return twoMiddles;
+    }
 }
 
 function main() {
@@ -367,7 +406,8 @@ function main() {
     let lastItemInList = findLast(SLL);
     //let reversedList = reverseList(SLL);
     let third = antepenultimate(SLL);
-    return third;
+    let middle = findMiddle(SLL);
+    return middle;
     //return SLL;
 }
 
