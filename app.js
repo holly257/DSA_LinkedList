@@ -181,6 +181,26 @@ class linkedList {
     }
 }
 
+function display(list) {
+    console.log('display function', list)
+    // If the list is empty
+    if (!list.head) {
+        return null;
+    }
+    let linkedList = [];
+    let currNode = list.head;
+
+    //while there are items in the list
+    while (currNode !== null) {
+        //push each item to the array
+        linkedList.push(currNode.value);
+        //move to the next item
+        currNode = currNode.next;
+    }
+
+    return linkedList;
+}
+
 function main() {
     const SLL = new linkedList();
 
@@ -197,8 +217,21 @@ function main() {
     SLL.insertAfter('3.5 Hotdog', '3 Helo');
     SLL.insertAt('new 3 - Kat', 7);
 
-    SLL.remove('6 Tauhida')
-    return SLL;
+    SLL.remove('6 Tauhida');
+    //return SLL;
+
+    let listValue = display(SLL);
+    return listValue;
 }
 
 console.log(main());
+
+// - Implement the following functions that operate on your linked list class. Note that these should be free functions
+//   instead of methods of the linked list class, so implement them outside the linked list class. Test each function
+//   using the list created in exercise 1.
+//     - display: displays the linked list
+
+//     - size: returns the size of the linked list
+//     - isEmpty: finds if the list is empty or not (without using the size() function)
+//     - findPrevious: finds the node before the item you are looking for
+//     - findLast: returns the last node in the linked list
