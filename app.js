@@ -70,7 +70,7 @@ class linkedList {
         let nextNode = this.head;
 
         while (currNode !== null && currNode.value !== itemToInsertAfter) {
-            // Save the previous node
+            // Save the next node
             currNode = currNode.next;
             nextNode = currNode.next;
         }
@@ -200,7 +200,7 @@ function display(list) {
     return linkedList;
 }
 
-function size(list) {    
+function size(list) {
     //returns 0 if empty list
     let count = 0;
     let currNode = list.head;
@@ -208,7 +208,7 @@ function size(list) {
     //while there are items in the list
     while (currNode !== null) {
         //coutn each item in the list
-        count ++;
+        count++;
         //move to the next item
         currNode = currNode.next;
     }
@@ -216,11 +216,62 @@ function size(list) {
     return count + ' items in list';
 }
 
-function isEmpty(list) {    
+function isEmpty(list) {
     // If the list is empty
     if (!list.head) {
         return true;
     } else return false;
+}
+
+function findPrevious(list, item) {
+    // If the list is empty
+    if (!list.head) {
+        return 'No items in list';
+    }
+
+    //inserting after the first item in the list
+    if (list.head.value == item) {
+        return 'Item is first in the list - no previous item.';
+    }
+
+    // Start at the head
+    let currNode = list.head;
+    // Keep track of next
+    let previousNode = list.head;
+
+    while (currNode !== null && currNode.value !== item) {
+        // Save the previous node
+        previousNode = currNode;
+        currNode = currNode.next;
+    }
+
+    //if item searched for doesn't exist
+    if (currNode === null) {
+        return 'Item not found';
+    }
+
+    return previousNode;
+}
+
+function findLast(list) {
+    console.log('find last', list);
+    // If the list is empty
+    if (!list.head) {
+        return 'No items in list';
+    }
+
+    let currNode = list.head;
+
+    while (currNode.next !== null) {
+        currNode = currNode.next;
+    }
+
+    if (currNode === null) {
+        console.log('Item not found');
+        return;
+    }
+
+    return currNode;
 }
 
 function main() {
@@ -240,23 +291,14 @@ function main() {
     SLL.insertAt('new 3 - Kat', 7);
 
     SLL.remove('6 Tauhida');
-    
+
     let listValue = display(SLL);
     let listLength = size(SLL);
     let isTheListEmpty = isEmpty(SLL);
-    return isTheListEmpty;
+    let previousItemInList = findPrevious(SLL, '3 Helo');
+    let lastItemInList = findLast(SLL);
+    return lastItemInList;
     //return SLL;
-
 }
 
 console.log(main());
-
-// - Implement the following functions that operate on your linked list class. Note that these should be free functions
-//   instead of methods of the linked list class, so implement them outside the linked list class. Test each function
-//   using the list created in exercise 1.
-//     - display: displays the linked list
-//     - size: returns the size of the linked list
-
-//     - isEmpty: finds if the list is empty or not (without using the size() function)
-//     - findPrevious: finds the node before the item you are looking for
-//     - findLast: returns the last node in the linked list
