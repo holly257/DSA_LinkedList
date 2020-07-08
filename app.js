@@ -381,6 +381,13 @@ function findMiddle(list) {
     }
 }
 
+// whether a node in the list has its next value pointing to an earlier node in the list). 
+function cycleList(list){
+    console.log('cycle list', list)
+
+    
+}
+
 function main() {
     const SLL = new linkedList();
 
@@ -407,7 +414,8 @@ function main() {
     //let reversedList = reverseList(SLL);
     let third = antepenultimate(SLL);
     let middle = findMiddle(SLL);
-    return middle;
+    let listCycle = cycleList(SLL);
+    return listCycle;
     //return SLL;
 }
 
