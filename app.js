@@ -23,7 +23,13 @@ class linkedList {
         if (!this.head) {
             return null;
         }
-        //if no item before??
+        //if inserting before first item in list??
+        if (this.head.value == itemToInsertBefore) {
+            let firstNode = this.head;
+            this.head = new _Node(newItem, this.head);
+            this.head.next = firstNode;
+            return;
+        }
 
         // Start at the head
         let currNode = this.head;
@@ -45,12 +51,18 @@ class linkedList {
         previousNode.next = newNode;
     }
 
-    insertAfter(newItem, itemToInsertAfter){
+    insertAfter(newItem, itemToInsertAfter) {
         // If the list is empty
         if (!this.head) {
             return null;
         }
-        //if no item after??
+
+        //inserting after the first item in the list
+        if (this.head.value == itemToInsertAfter) {
+            let nodeAfterNewNode = this.head.next;
+            this.head.next = new _Node(newItem, nodeAfterNewNode);
+            return;
+        }
 
         // Start at the head
         let currNode = this.head;
@@ -60,7 +72,7 @@ class linkedList {
         while (currNode !== null && currNode.value !== itemToInsertAfter) {
             // Save the previous node
             currNode = currNode.next;
-            nextNode = currNode.next.next;
+            nextNode = currNode.next;
         }
         if (currNode === null) {
             console.log('Item not found');
@@ -137,17 +149,18 @@ class linkedList {
 function main() {
     const SLL = new linkedList();
 
-    SLL.insertFirst('Apollo');
-    SLL.insertLast('Boomer');
-    SLL.insertFirst('Helo');
-    SLL.insertFirst('Husker');
-    SLL.insertFirst('Starbuck');
-    SLL.insertFirst('Tauhida');
+    SLL.insertFirst('1 Apollo');
+    SLL.insertLast('2 Boomer');
+    SLL.insertLast('3 Helo');
+    SLL.insertLast('4 Husker');
+    SLL.insertLast('5 Starbuck');
+    SLL.insertLast('6 Tauhida');
 
-    SLL.remove('Husker');
+    SLL.remove('4 Husker');
 
-    SLL.insertBefore('Athena', 'Boomer')
-    SLL.insertAfter('Hotdog', 'Helo')
+    SLL.insertBefore('1.5 Athena', '2 Boomer');
+    SLL.insertAfter('3.5 Hotdog', '3 Helo');
+    SLL.insertAfter('1.5 Zeus', '1 Apollo');
     return SLL;
 }
 
