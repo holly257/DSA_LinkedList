@@ -84,6 +84,41 @@ class linkedList {
         currNode.next = newNode;
     }
 
+    insertAt(newItem, position) {
+        // If the list is empty
+        if (!this.head) {
+            return null;
+        }
+
+        //inserting at the first item in the list
+        if (position === 1) {
+            this.insertFirst(newItem);
+            return;
+        }
+
+        //start count at one for the first item in the list
+        let count = 1;
+        let currNode = this.head;
+        let previousNode = this.head;
+
+        //keep traversing while there are items and the count isnt the position
+        while (currNode !== null && count !== position) {
+            previousNode = currNode;
+            currNode = currNode.next;
+            //increase the count for each item in the list
+            count++;
+        }
+
+        if (currNode === null) {
+            console.log('Item not found');
+            return;
+        }
+
+        let newNode = new _Node(newItem);
+        newNode.next = currNode;
+        previousNode.next = newNode;
+    }
+
     insertLast(item) {
         if (this.head === null) {
             this.insertFirst(item);
@@ -160,7 +195,9 @@ function main() {
 
     SLL.insertBefore('1.5 Athena', '2 Boomer');
     SLL.insertAfter('3.5 Hotdog', '3 Helo');
-    SLL.insertAfter('1.5 Zeus', '1 Apollo');
+    SLL.insertAt('new 3 - Kat', 7);
+
+    SLL.remove('6 Tauhida')
     return SLL;
 }
 

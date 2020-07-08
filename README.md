@@ -12,7 +12,5 @@
     - Implement a function called insertAt() that inserts an item at a specific position in the linked list.
     - Add Athena before Boomer using your insertBefore() function.
     - Add Hotdog after Helo using the insertAfter() method.
-
-    - ##### in progress: insertAt()
     - Using the insertAt() method insert Kat in the 3rd position of the list.
     - Remove Tauhida from the list.
