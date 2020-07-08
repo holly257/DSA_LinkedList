@@ -254,7 +254,6 @@ function findPrevious(list, item) {
 }
 
 function findLast(list) {
-    console.log('find last', list);
     // If the list is empty
     if (!list.head) {
         return 'No items in list';
@@ -274,10 +273,26 @@ function findLast(list) {
     return currNode;
 }
 
+function WhatDoesThisProgramDo(lst) {
+    let current = lst.head;
+    while (current !== null) {
+        let newNode = current;
+        while (newNode.next !== null) {
+            if (newNode.next.value === current.value) {
+                newNode.next = newNode.next.next;
+            } else {
+                newNode = newNode.next;
+            }
+        }
+        current = current.next;
+    }
+}
+
 function main() {
     const SLL = new linkedList();
 
     SLL.insertFirst('1 Apollo');
+    SLL.insertLast('2 Boomer');
     SLL.insertLast('2 Boomer');
     SLL.insertLast('3 Helo');
     SLL.insertLast('4 Husker');
@@ -297,8 +312,8 @@ function main() {
     let isTheListEmpty = isEmpty(SLL);
     let previousItemInList = findPrevious(SLL, '3 Helo');
     let lastItemInList = findLast(SLL);
-    return lastItemInList;
-    //return SLL;
+    //return lastItemInList;
+    return SLL;
 }
 
 console.log(main());

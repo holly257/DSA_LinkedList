@@ -21,3 +21,6 @@
     - isEmpty: finds if the list is empty or not (without using the size() function)
     - findPrevious: finds the node before the item you are looking for
     - findLast: returns the last node in the linked list
+4. Mystery program
+    - figures out purpose of WhatDoesThisProgramDo()
+    - removes duplicate values from list
