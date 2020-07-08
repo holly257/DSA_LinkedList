@@ -289,7 +289,6 @@ function WhatDoesThisProgramDo(lst) {
 }
 
 function reverseList(list) {
-    console.log('reverse list', list);
     // If the list is empty
     if (!list.head) {
         return null;
@@ -320,6 +319,29 @@ function reverseList(list) {
     return list;
 }
 
+//antepenultimate means third from the last
+function antepenultimate(list) {
+    console.log('third', list);
+
+    // If the list is empty, or only has 1 or 2 items
+    if (!list.head || !list.head.next || !list.head.next.next) {
+        return null;
+    }
+
+    let item = null;
+    let currNode = list.head;
+
+    //while there are items in the list
+    while (currNode.next.next.next !== null) {
+        //coutn each item in the list
+        
+        //move to the next item
+        currNode = currNode.next;
+    }
+
+    return currNode;
+}
+
 function main() {
     const SLL = new linkedList();
 
@@ -344,8 +366,9 @@ function main() {
     let previousItemInList = findPrevious(SLL, '3 Helo');
     let lastItemInList = findLast(SLL);
     //let reversedList = reverseList(SLL);
-    //return reversedList;
-    return SLL;
+    let third = antepenultimate(SLL);
+    return third;
+    //return SLL;
 }
 
 console.log(main());
