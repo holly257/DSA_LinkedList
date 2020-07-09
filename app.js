@@ -380,8 +380,6 @@ function findMiddle(list) {
 //have two pointers being moved through list at different speeds
 //if there is a loop - they will eventually collide
 function cycleList(list) {
-    console.log('cycle list');
-
     if (!list.head) {
         return null;
     }
@@ -397,6 +395,48 @@ function cycleList(list) {
         }
     }
     return false;
+}
+
+// 9. Sorting a list
+//     - Write an algorithm that will sort a given linked list.
+//     - For example given a list such as 3->2->5->7->1, your program will output the sorted version of
+//         this list which will be 1->2->3->5->7.
+//     - You may not use another list or any other data structure such as an array to store the data.
+
+function sortList(list) {
+    console.log('sort list', list);
+    if (!list.head) {
+        return null;
+    }
+
+    if (!list.head.next) {
+        return list;
+    }
+
+    let bigger;
+    let smaller;
+    let currNode = list.head;
+    let nextNode = list.head.next;
+
+    while (currNode !== null) {
+        console.log(nextNode, currNode);
+        //if nextNode is smaller number
+        if (nextNode.value < currNode.value) {
+            //make currNode prevNode
+            smaller = nextNode;
+            bigger = currNode;
+
+            currNode = smaller;
+            nextNode = bigger;
+
+            return;
+        }
+        console.log('next', nextNode, 'curr', currNode);
+        currNode = currNode.next;
+        nextNode = currNode.next;
+    }
+
+    return list;
 }
 
 function main() {
@@ -426,8 +466,20 @@ function main() {
     let third = antepenultimate(SLL);
     let middle = findMiddle(SLL);
     let listCycle = cycleList(SLL);
-    return listCycle;
+
     //return SLL;
 }
 
-console.log(main());
+function list() {
+    const newestList = new linkedList();
+
+    newestList.insertFirst(3);
+    newestList.insertLast(2);
+    newestList.insertLast(5);
+    newestList.insertLast(7);
+    newestList.insertLast(1);
+    let sortedList = sortList(newestList);
+    return sortedList;
+}
+
+console.log(list());

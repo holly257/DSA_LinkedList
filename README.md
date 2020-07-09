@@ -35,12 +35,11 @@
     - Write an algorithm to find the middle element of a linked list.
     - Note You may be tempted to add a length property to your linked list class. The length property is not a typical property of linked list, therefore don't make any modification to the linked list class that is provided to you.
     - Also, finding the size of the linked list using the size() function and dividing it by half will not find the correct middle of the linked list. So, don't use either of these approaches.
-      <br>
-      <br>
-    #### not completed yet:
 8. Cycle in a list
     - Write an algorithm to find whether a linked list has a cycle (i.e., whether a node in the list has its next value pointing to an earlier node in the list).
     - For this exercise, create a linked list with the name CycleList. Be sure to insert nodes in the list so that it has a cycle. Then test your program with a cycleList function.
+    
+    #### not completed yet:
 9. Sorting a list
     - Write an algorithm that will sort a given linked list.
     - For example given a list such as 3->2->5->7->1, your program will output the sorted version of this list which will be 1->2->3->5->7.
