@@ -397,43 +397,28 @@ function cycleList(list) {
     return false;
 }
 
-// 9. Sorting a list
-//     - Write an algorithm that will sort a given linked list.
-//     - For example given a list such as 3->2->5->7->1, your program will output the sorted version of
-//         this list which will be 1->2->3->5->7.
-//     - You may not use another list or any other data structure such as an array to store the data.
-
 function sortList(list) {
-    console.log('sort list', list);
     if (!list.head) {
         return null;
     }
 
-    if (!list.head.next) {
-        return list;
-    }
+    let listLength = size(list);
 
-    let bigger;
-    let smaller;
-    let currNode = list.head;
-    let nextNode = list.head.next;
+    for (i = 0; i < listLength; i++) {
+        let currNode = list.head;
+        let nextNode = list.head.next;
+        while (currNode.next !== null) {
+            //if nextNode is smaller number
+            if (nextNode.value < currNode.value) {
+                //make currNode prevNode
 
-    while (currNode !== null) {
-        console.log(nextNode, currNode);
-        //if nextNode is smaller number
-        if (nextNode.value < currNode.value) {
-            //make currNode prevNode
-            smaller = nextNode;
-            bigger = currNode;
-
-            currNode = smaller;
-            nextNode = bigger;
-
-            return;
+                let temp = nextNode.value;
+                nextNode.value = currNode.value;
+                currNode.value = temp;
+            }
+            currNode = currNode.next;
+            nextNode = currNode.next;
         }
-        console.log('next', nextNode, 'curr', currNode);
-        currNode = currNode.next;
-        nextNode = currNode.next;
     }
 
     return list;
