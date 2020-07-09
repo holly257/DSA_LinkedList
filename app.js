@@ -326,14 +326,10 @@ function antepenultimate(list) {
         return null;
     }
 
-    let item = null;
     let currNode = list.head;
 
-    //while there are items in the list
+    //while the nodes later isn't the end, go through the list
     while (currNode.next.next.next !== null) {
-        //coutn each item in the list
-
-        //move to the next item
         currNode = currNode.next;
     }
 
@@ -381,11 +377,26 @@ function findMiddle(list) {
     }
 }
 
-// whether a node in the list has its next value pointing to an earlier node in the list). 
-function cycleList(list){
-    console.log('cycle list', list)
+//have two pointers being moved through list at different speeds
+//if there is a loop - they will eventually collide
+function cycleList(list) {
+    console.log('cycle list');
 
-    
+    if (!list.head) {
+        return null;
+    }
+
+    let slow_p = list.head;
+    let fast_p = list.head;
+
+    while (slow_p && fast_p && fast_p.next) {
+        slow_p = slow_p.next;
+        fast_p = fast_p.next.next;
+        if (slow_p == fast_p) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function main() {
@@ -400,8 +411,8 @@ function main() {
 
     // SLL.remove('4 Husker');
 
-    // SLL.insertBefore('1.5 Athena', '2 Boomer');
-    // SLL.insertAfter('3.5 Hotdog', '3 Helo');
+    SLL.insertBefore('1.5 Athena', '2 Boomer');
+    SLL.insertAfter('3.5 Hotdog', '3 Helo');
     // SLL.insertAt('new 3 - Kat', 7);
 
     // SLL.remove('6 Tauhida');
